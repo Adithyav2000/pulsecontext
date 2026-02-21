@@ -1,0 +1,7 @@
+## Backend runtime dependencies (used to create the .venv)
+# Keep this file minimal — used by CI and local dev to install packages.
+fastapi
+uvicorn[standard]
+psycopg[binary]
+pydantic
+python-dotenv
