@@ -25,9 +25,9 @@ from settings import settings
 def get_conn():
     """Return a new psycopg connection using `settings.db_url`.
 
-    We intentionally return a standard (blocking) psycopg connection to
-    match the current synchronous FastAPI usage. If you migrate to
-    async endpoints, replace this with a compatible pool/driver.
+    We add a short `connect_timeout` so HTTP requests don't hang
+    indefinitely if the database is unreachable. Adjust the timeout
+    as needed for your environment or replace with a pool.
     """
 
-    return psycopg.connect(settings.db_url)
+    return psycopg.connect(settings.db_url, connect_timeout=5)
